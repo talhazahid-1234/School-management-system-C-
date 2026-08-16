@@ -1,0 +1,147 @@
+
+#include <iostream>
+using namespace std;
+int inp;
+struct student {
+    string name;
+    int rollno;
+    string section;
+    int age;
+};
+void out() {
+    cout << "\n== School Management System Terminated! ==" << endl;
+    cout << "== Thanks for your participation! ==" << endl;
+}
+int main() {
+    int total_stu = 0;
+    int roll;
+    student info[100];
+    while (true) {
+        cout << "\n===== SCHOOL MANAGEMENT SYSTEM =====" << endl;
+        cout << "1. Add Student" << endl;
+        cout << "2. View Students" << endl;
+        cout << "3. Search Student" << endl;
+        cout << "4. Update Student" << endl;
+        cout << "5. Delete Student" << endl;
+        cout << "6. Total Students" << endl;
+        cout << "7. Exit" << endl;
+        cout << "Enter input: ";
+        cin >> inp;
+        while (inp > 7 || inp < 1) {
+            cout << "Invalid Choice! Enter Again: ";
+            cin >> inp;
+        }
+        // Exit
+        if (inp == 7) {
+            out();
+            break;
+        }
+        // Add Student
+        else if (inp == 1) {
+            int num;
+            cout << "Enter number of students you want to add: ";
+            cin >> num;
+            for (int i = total_stu; i < total_stu + num; i++) {
+                cout << "\nEnter data of student number " << i + 1 << endl;
+                cout << "Enter name: ";
+                cin >> ws;
+                getline(cin, info[i].name);
+                cout << "Enter Roll Number: ";
+                cin >> info[i].rollno;
+                cout << "Enter Section: ";
+                cin >> info[i].section;
+                cout << "Enter Age: ";
+                cin >> info[i].age;
+            }
+            total_stu += num;
+            cout << "\n== Data Entered Successfully! ==" << endl;
+        }
+        // View Students
+        else if (inp == 2) {
+            if (total_stu == 0) {
+                cout << "\nNo Student Record Found!" << endl;
+            }
+            else {
+                cout << "\n===== STUDENT RECORD =====" << endl;
+                for (int i = 0; i < total_stu; i++) {
+                    cout << "\nStudent " << i + 1 << endl;
+                    cout << "Name: " << info[i].name << endl;
+                    cout << "Roll No: " << info[i].rollno << endl;
+                    cout << "Section: " << info[i].section << endl;
+                    cout << "Age: " << info[i].age << endl;
+                }
+            }
+        }
+        // Total Students
+        else if (inp == 6) {
+            cout << "\nTotal number of students = " << total_stu << endl;
+        }
+        else if (inp == 3){
+            cout<<"Enter Roll number of student: ";
+            cin >> roll;
+            bool found = false;
+        for (int i = 0; i < total_stu; i++) {
+            if (roll == info[i].rollno) {
+        found = true;
+        cout << "\nStudent Found!" << endl;
+        cout << "Name: " << info[i].name << endl;
+        cout << "Roll No: " << info[i].rollno << endl;
+        cout << "Section: " << info[i].section << endl;
+        cout << "Age: " << info[i].age << endl;
+        break;
+    }
+}
+
+        if (!found) {
+    cout << "\nStudent Not Found!" << endl;
+}
+        }
+    else if(inp == 4){
+        cout<<"Enter Roll number of student: ";
+            cin >> roll;
+            bool found1 = false;
+        for (int i = 0; i < total_stu; i++) {
+            if (roll == info[i].rollno) {
+        found1 = true;
+        cout<<"Enter updated name: ";
+        cin >> ws;
+        getline(cin, info[i].name);
+        cout<<"Enter updated Roll number: ";
+        cin >> info[i].rollno;
+        cout<<"Enter updated section: ";
+        cin >> info[i].section;
+        cout<<"Enter updated age: ";
+        cin >> info[i].age;
+        break;
+    }
+    }
+    if(!found1){
+        cout << "\nStudent Not Found!" << endl;
+    }
+    }
+    // Delete Student
+else if (inp == 5) {
+
+    cout << "Enter Roll Number of student to delete: ";
+    cin >> roll;
+    bool found2 = false;
+    for (int i = 0; i < total_stu; i++) {
+        if (roll == info[i].rollno) {
+            found2 = true;
+            // Shift all students after the deleted student
+            for (int j=i;j < total_stu - 1; j++) {
+                info[j] = info[j + 1];
+            }
+            total_stu--;
+            cout << "\nStudent Deleted Successfully!" << endl;
+            break;
+        }
+    }
+
+    if (!found2){
+        cout << "\nStudent Not Found!" << endl;
+    }
+}
+    }
+    return 0;
+}
